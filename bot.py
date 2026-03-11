@@ -193,8 +193,11 @@ async def handler(event):
 
     text = normalize(text_raw)
 
-    if not text:
-        return
+if not text:
+    return
+
+if len(text) > 350:
+    return
 
     # проверка ban слов
     for word in ban_words:
@@ -235,3 +238,4 @@ async def handler(event):
 client.start()
 print("Бот запущен и слушает сообщения...")
 client.run_until_disconnected()
+
