@@ -145,8 +145,6 @@ ban_words = [
     "выполняю",
     "роблю",
     "делаю",
-    "послуги",
-    "услуги",
 
     # разговоры / шум
     "работают",
@@ -193,11 +191,12 @@ async def handler(event):
 
     text = normalize(text_raw)
 
-if not text:
-    return
+    if not text:
+        return
 
-if len(text) > 350:
-    return
+    # фильтр длинных сообщений
+    if len(text) > 350:
+        return
 
     # проверка ban слов
     for word in ban_words:
@@ -238,4 +237,3 @@ if len(text) > 350:
 client.start()
 print("Бот запущен и слушает сообщения...")
 client.run_until_disconnected()
-
